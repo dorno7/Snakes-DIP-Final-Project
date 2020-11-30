@@ -5,7 +5,7 @@ function Snaxel = snakesDynamic(Snaxel)
     nextNode = []; currNode = [];
     neighbors = {[-1 -1] [0 -1] [1 -1] [-1 0] [0 0] [0 1] [1 -1] [0 1] [1 1]}; % contains relative coordinates of neighbors
     
-    
+    thing = 500;
     for i=1:numSnaxels
         for j=1:9 % For all neighbors of next node (pixel)
             minEnergy = inf;
