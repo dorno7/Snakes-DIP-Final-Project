@@ -1,4 +1,4 @@
-function Snaxel = snakesDynamic(Snaxel, Vertical, Horizontal, alpha)
+function Snaxel = snakesDynamic(Snaxel, Vertical, Horizontal)
 
     numSnaxels = numel(Snaxel); % Get number of snaxels, each of which is a coordinate
     energyMtx = zeros(numSnaxels,9); % initialize first column of energy matrix
@@ -19,8 +19,8 @@ function Snaxel = snakesDynamic(Snaxel, Vertical, Horizontal, alpha)
                 end
                 
                 currNode = Snaxel{i} + uint8(neighbors{k});
-                %%% Very important line below
-                E = getEnergy(currNode, nextNode, Vertical, Horizontal, alpha); 
+                %%% Very impo
+                E = getEnergy(currNode, nextNode, Vertical, Horizontal);
                 
                 if i == 1 % if i=1, can't add previous value from that column, wrap back around - UNSURE
                     energy = energyMtx(numSnaxels,k) + E;

@@ -18,13 +18,14 @@ y = uint8(y);
 for i=1:length(x)
     Snaxel(i) = {[x(i) y(i)]}; % Cell array containing coordinates
 end
-% Iterate calculating the new snaxels 
-for n=1
-    drawSnakewithLines(Snaxel,Image)
+% Iterate calculating the new snaxels
+[~, ~, Vertical, Horizontal] = MagnitudeGradient(Image,0.6);
+for n=1:3
+    drawSnakewithLines(Snaxel, Image)
     title(['Iteration = ', num2str(n)])
     movegui('center')
-    %pause(0.04)
-    %Snaxel = snakesDynamic(Snaxel);  
+    pause(0.04)
+    Snaxel = snakesDynamic(Snaxel, Vertical, Horizontal, 0.5); % last param is alpha
 end
 
 
