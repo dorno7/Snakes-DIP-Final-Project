@@ -10,23 +10,39 @@ Snaxel = {};
 % Select pixels to make up starting snake %
 figure
 imshow(Image)
-[x y] = ginput;
-x = uint8(x);
-y = uint8(y);
+[x,y] = ginput;
 [height, width] = size(Image);
 % Put coordinates into a cell array
 for i=1:length(x)
     Snaxel(i) = {[x(i) y(i)]}; % Cell array containing coordinates
 end
 % Iterate calculating the new snaxels
-[~, ~, Vertical, Horizontal] = MagnitudeGradient(Image,0.6);
-for n=1:3
+[MagImage, GradImage, ~, ~] = MagnitudeGradient(Image,0.6);
+for n=1:25
+    if n == 1
+        firstIter = Snaxel;
+    elseif n == 25
+        lastIter = Snaxel;
+    end
     drawSnakewithLines(Snaxel, Image)
     title(['Iteration = ', num2str(n)])
     movegui('center')
-    pause(0.04)
-    Snaxel = snakesDynamic(Snaxel, Vertical, Horizontal, 0.5); % last param is alpha
+    Snaxel = snakesDynamic(Snaxel, Image, MagImage, 0.5); % last param is alpha
 end
+
+% Show first and last images
+close all
+figure
+drawSnakewithLines(firstIter, Image)
+title('Starting Image')
+movegui('center')
+
+figure
+drawSnakewithLines(lastIter, Image)
+title('Final Image')
+movegui('center')
+
+
 
 
 
