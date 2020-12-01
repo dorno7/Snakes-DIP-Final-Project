@@ -1,5 +1,0 @@
-function Energy = getEnergy(currNode, nextNode, Vertical, Horizontal, alpha, beta)
-    
-    Eint = 0.5* ( alpha * ( abs(nextNode - currNode) )^2)
-    
-end
