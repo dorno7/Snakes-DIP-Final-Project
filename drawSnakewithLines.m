@@ -5,7 +5,9 @@ function drawSnakewithLines(Snaxel, Image)
         for j=1:width
             for k = 1:numel(Snaxel)
                 if i == Snaxel{k}(2) && j == Snaxel{k}(1)
-                    snakeImage(i,j,:) = [255 0 0];
+                    if isBound(i,j, height, width)
+                        snakeImage(i,j,:) = [255 0 0];
+                    end
                 end
             end
         end
